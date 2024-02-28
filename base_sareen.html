@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Adventures</title>
+    <style>
+      .slideshow-container {
+        max-width: 800px;
+        position: relative;
+        margin: auto;
+      }
+
+      .slide {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      .fade {
+        animation: fade 1.5s ease-in-out infinite;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      body {
+        /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+        font-family: "Outfit", cursive;
+        margin: 0;
+        padding: 0;
+        /* background-color: #f4f4f4; */
+        font-size: large;
+        background-image: url("bgspace1.jpg"); 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      header {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: black;
+        color: black;
+        padding: 10px;
+        text-align: left;
+      }
+
+      nav {
+        padding: 10px;
+        text-align: center;
+      }
+
+      section {
+        padding: 20px;
+        border-radius: 8px;
+        /* background-color: #fff;
+            
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        background-image: url("bgspace1.jpg"); 
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      h2,
+      h3 {
+        color: white;
+      }
+
+      h2 {
+        font-size: 30px;
+        font-weight: 800;
+      }
+
+      p {
+        color: white;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      form {
+        margin-top: 20px;
+        width: 50%;
+        color: white;
+      }
+      input {
+        font-family: "Outfit";
+      }
+      select {
+        font-family: "Outfit";
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: white;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      /* Base styling for the submit button */
+
+      .form-submit {
+        /* background-color: #333;
+            color: #fff;
+            cursor: pointer; */
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        background-color: #3498db;
+        color: #fff;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        align-items: center;
+        justify-content: center;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .form-submit:hover {
+        background-color: white;
+        color: black;
+        transform: scale(1.1); /* Enlarge on hover */
+        border-radius: 5px;
+      }
+      .form-submit:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: white;
+        color: black;
+        z-index: -1; 
+        transform: scaleX(
+          0
+        ); 
+        transform-origin: bottom right;
+        transition: transform 0.3s;
+      }
+
+      .form-submit:hover:before {
+        transform: scaleX(
+          1
+        ); 
+        transform-origin: bottom left;
+        border-radius: 5px;
+      }
+      .form-submit:active {
+        color: #2c3e50;
+      }
+      .navbar {
+        display: flex;
+        justify-content: space-evenly;
+        /* background-color: black; */
+        font-size: 30px;
+      }
+
+      a {
+        color: white;
+      }
+
+      .heading {
+        text-align: center;
+        color: white;
+        padding-top: 20px;
+      }
+
+      .total-navbar {
+        position: sticky;
+        top: 0;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        background-color: #fff;
+        padding: 20px;
+        z-index: 1;
+        text-align: center;
+        color: black;
+      }
+      .popup_heading {
+        background-color: rgb(228, 227, 210);
+      }
+
+      
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: black;
+      }
+      .space-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      #apodImage {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      #chatbot-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #3498db;
+        color: #fff;
+        border-radius: 10px 10px 0 10px;
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #chatbot-container:hover {
+        background-color: #2980b9;
+      }
+
+      #chatbot-content {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      #chatbot-content div {
+        margin: 5px;
+        padding: 10px;
+        background-color: #2980b9;
+        color: #fff;
+        border-radius: 10px 0 10px 10px;
+      }
+
+      #user-input {
+        width: calc(100% - 20px);
+        padding: 5px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+      }
+
+      #send-button {
+        width: 100%;
+        padding: 8px;
+        margin: 5px;
+        background-color: #2980b9;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="total-navbar">
+      <h1 class="heading">Andre<sub>w</sub> Tourism</h1>
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#packages">Packages</a>
+        <a href="#book">Book</a>
+      </nav>
+    </div>
+    <section id="home">
+      <h2>
+        Welcome to Andrew Tourism. A first of it's kind experience for the
+        students of VIT Vellore to be connected to Space-X.
+      </h2>
+      <p>
+        Explore the wonders of the universe with Space Adventures, where dreams
+        become reality. Our state-of-the-art spacecrafts and experienced crew
+        ensure an unforgettable journey beyond our planet.<br />
+        Here are some of our past tours.
+      </p>
+      <div class="slideshow-container">
+        <div class="slide fade">
+          <img src="space1.jpg" alt="Slide 1" />
+        </div>
+        <div class="slide fade">
+          <img src="space2.jpg" alt="Slide 2" />
+        </div>
+        <div class="slide fade">
+          <img src="space3.jpg" alt="Slide 3" />
+        </div>
+        <div class="slide fade">
+          <img src="space4.jpg" alt="Slide 4" />
+        </div>
+        <div class="slide fade">
+          <img src="space5.jpg" alt="Slide 5" />
+        </div>
+      </div>
+    </section>
+
+    <section id="packages">
+      <h2>Our Exclusive Packages</h2>
+      <div>
+        <h3>Saturn Exploration</h3>
+        <img src="saturn1.jpg" alt="Saturn Image" />
+        <p>
+          Experience the beauty and unique landscapes of Saturn. A
+          once-in-a-lifetime opportunity to witness the most beautiful planet in
+          our Solar System.
+        </p>
+      </div>
+      <div>
+        <h3>Mars Adventure</h3>
+        <img src="mars.jpg" alt="Mars Image" />
+        <p>
+          Embark on a journey to the mysterious red planet, Mars. Explore its
+          vast deserts and uncover the secrets hidden beneath the surface.
+        </p>
+      </div>
+      <div>
+        <h3>Jupiter Odyssey</h3>
+        <img src="jupiter.png" alt="Jupiter Image" />
+        <p>
+          Join us on a thrilling adventure to the gas giant, Jupiter. Witness
+          its colossal storms and explore the fascinating world of this giant
+          planet.
+        </p>
+      </div>
+      <h1
+        style="
+          font-family: Outfit;
+          justify-content: center;
+          text-align: center;
+          font-size: 40px;
+          color: white;
+        "
+      >
+        Book Now!<br />
+      </h1>
+      <div style="display: flex; justify-content: center">
+        <form id="myForm">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">VIT-Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="package">Choose your package:</label>
+          <select id="package" name="package" required>
+            <option value="saturn">Saturn Exploration</option>
+            <option value="mars">Mars Adventure</option>
+            <option value="jupiter">Jupiter Odyssey</option>
+          </select>
+
+          <label for="message">Why do you deserve this oppurtunity?</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="button" onclick="showPopup()" class="form-submit">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span><br />
+        <div id="popup-heading">
+          <b>Congratulations! Here are your details:</b><br />
+        </div>
+
+        <strong>Name:</strong> <span id="popupName"></span><br />
+        <strong>Email:</strong> <span id="popupEmail"></span><br />
+        <strong>Package:</strong> <span id="popupPackage"></span><br />
+      </div>
+    </section>
+    <div class="space-container">
+      <h1 style="text-align: center">Astronomy Picture of the Day</h1>
+      <img src="" alt="Astronomy Picture of the Day" id="apodImage" />
+    </div>
+    <div id="chatbot-container">
+      <div onclick="toggleChatbot()" id="chatbot-toggle">Chat with us</div>
+      <div id="chatbot-content">
+        <div>Hello! How can I help you today?</div>
+      </div>
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <p id="chatbotresponse"></p>
+      <button id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+      function showPopup() {
+        // Get form values
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var package = document.getElementById("package").value;
+        console.log(email);
+        // Update popup content
+        document.getElementById("popupName").innerText = name;
+        document.getElementById("popupEmail").innerText = email;
+        document.getElementById("popupPackage").innerText = package;
+
+        var emailRegex = /^[a-zA-Z]+\.[a-zA-Z]+\d{4}@vitstudent\.ac\.in$/;
+        if (!emailRegex.test(email)) {
+          console.log(email.value);
+          alert("Please enter a valid email address.");
+        } else {
+          let popup = document.querySelector(".popup");
+          popup.style.display = "block";
+        }
+        return false;
+      }
+
+      function closePopup() {
+        // Close the popup
+        document.getElementById("popup").style.display = "none";
+      }
+
+      // Close the popup if the user clicks outside of it
+      window.onclick = function (event) {
+        var popup = document.getElementById("popup");
+        if (event.target == popup) {
+          closePopup();
+        }
+      };
+
+      function toggleChatbot() {
+        var chatbotContent = document.getElementById("chatbot-content");
+        chatbotContent.style.display =
+          chatbotContent.style.display === "flex" ? "none" : "flex";
+      }
+
+      function sendMessage() {
+        var userInputField = document.getElementById("user-input");
+        var userInput = document.getElementById("user-input").value;
+        if (userInput != "") {
+          var chatbotContent = document.getElementById("chatbot-content");
+          var userMessage = document.createElement("div");
+          userMessage.textContent = "You: " + userInput;
+          userMessage.style.backgroundColor = "#3498db";
+          userMessage.style.borderRadius = "0 10px 10px 10px";
+          userMessage.style.color = "#fff";
+          userMessage.style.padding = "10px";
+          userMessage.style.margin = "5px";
+          chatbotContent.appendChild(userMessage);
+
+          // Respond to the user input
+          var chatbotResponse = getChatbotResponse(userInput);
+          var responseArea = document.getElementById("chatbotresponse");
+          responseArea.innerText = chatbotResponse;
+          var botMessage = document.createElement("div");
+          userInputField.value = "";
+        }
+      }
+
+      function getChatbotResponse(userInput) {
+        switch (userInput.toLowerCase()) {
+          case "hi":
+            return "Hi, how can i help you?";
+            break;
+          case "hello":
+            return "Hello! How can I assist you?";
+            break;
+
+          case "how much does it cost?":
+            return "For pricing information, please visit our 'Packages' section.";
+            break;
+
+          case "what destinations are available?":
+            return "We offer trips to Saturn, Mars, and Jupiter. Each destination has its own unique experience.";
+            break;
+
+          case "tell me about Mercury":
+            return "Mercury is the closest planet to the Sun. It has extreme temperatures and a rocky surface.";
+            break;
+
+          case "tell me about Mars":
+            return "Mars is known as the 'Red Planet.' It has a thin atmosphere and diverse landscapes, including deserts and polar ice caps.";
+            break;
+
+          case "tell me about Jupiter":
+            return "Jupiter is the largest planet in our solar system. It has a thick atmosphere and a storm known as the Great Red Spot.";
+            break;
+
+          case "how long is the space journey?":
+            return "The duration of the space journey depends on the destination. Trips to Saturn take less time than journeys to Mars or Jupiter.";
+            break;
+
+          case "can I bring personal items on the spacecraft?":
+            return "We have specific guidelines for personal items. Please check our 'Travel Guide' section for more details.";
+            break;
+
+          case "how many people can go on a trip together?":
+            return "Our spacecraft can accommodate a limited number of passengers. Please check the 'Book' section for availability.";
+            break;
+
+          case "are there any age restrictions?":
+            return "Space travel is suitable for individuals aged 18 and above. Contact our customer service for more information.";
+            break;
+
+          case "tell me about the spacecraft":
+            return "Our spacecraft are equipped with advanced technology to ensure a safe and comfortable journey. Learn more in the 'About Us' section.";
+            break;
+
+          case "what is included in the package?":
+            return "Packages include transportation, accommodation in space stations, guided tours, and meals. Check each package for specific details.";
+            break;
+
+          case "how do I book a trip?":
+            return "You can book a trip through our 'Book' section. Fill in your details, choose a package, and complete the reservation process.";
+            break;
+
+          case "are there any discounts available?":
+            return "We occasionally offer special discounts and promotions. Keep an eye on our website and subscribe to our newsletter for updates.";
+            break;
+
+          case "what safety measures are in place?":
+            return "Safety is our top priority. Our spacecraft undergo rigorous testing, and our experienced crew ensures a secure journey. Learn more in the 'Safety' section.";
+            break;
+
+          case "tell me about your company":
+            return "We are a leading space tourism company, dedicated to providing unique and memorable experiences beyond Earth. Learn more in the 'About Us' section.";
+            break;
+
+          case "contact information":
+            return "For inquiries, you can reach us at info@spacetourism.com or call us at +1 (123) 456-7890.";
+            break;
+
+          case "thank you":
+            return "You're welcome! If you have any more questions, feel free to ask.";
+            break;
+
+          default:
+            return "I'm sorry, I didn't understand that. Can you please be more specific?";
+        }
+      }
+    </script>
+  </body>
+</html>
